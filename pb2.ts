@@ -3,3 +3,11 @@
 // Example:
 // Input: 4  → Output: trueInput: 7  → Output: false
 // Hint: Use the modulus (%) operator.
+function isEven(num:number){
+if(num%2===0){
+    return true;
+}
+return false;
+}
+const even = isEven(33);
+console.log(even);
