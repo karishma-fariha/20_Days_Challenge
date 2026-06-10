@@ -4,6 +4,8 @@
 // Input: [1, 2, 2, 3, 3, 4]  → Output: [1, 2, 3, 4]
 // Hint: Use Set or filter() with indexOf().
 
-function removeDuplicates(arr:number[]):number[]{
-    return arr.filter((item,index))
+function removeDuplicates<T>(arr:T[]):T[]{
+    return arr.filter((item:T,index:number):boolean=>arr.indexOf(item)===index);
 }
+const resultD = removeDuplicates([1, 2, 2, 3, 3, 4]);
+console.log(resultD);
