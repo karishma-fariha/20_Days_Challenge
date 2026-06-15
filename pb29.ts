@@ -17,4 +17,4 @@ async function getUserData(id: number): Promise<MockUser> {
 (async()=>{
     const data = await getUserData(1);
     console.log(data);
-})()
+})();
