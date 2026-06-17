@@ -4,5 +4,9 @@
 // Input: [1,2,4,5], n=5  → Output: 3
 // Hint: Use the formula: expected sum = n*(n+1)/2, then subtract actual sum.
 function findMissing(arr, n){
-    
+    const ExSum = (n*(n+1))/2 ;
+    const AcSum = arr.reduce((acc,curr)=>acc +curr, 0);
+    return ExSum - AcSum;
 }
+
+console.log(findMissing([1,3,4,5],5));
