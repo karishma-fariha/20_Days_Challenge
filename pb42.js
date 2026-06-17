@@ -5,3 +5,11 @@
 // Hint: Sort both strings and compare, or use a character frequency map.
 
 
+function isAnagram(str1, str2){
+    if(str1.length !== str2.length) return false;
+    const SortSTR = (str)=>{
+        return str.toLowerCase().split('').sort().join('');
+    }
+    return SortSTR(str1)===SortSTR(str2);
+}
+console.log(isAnagram('listen','silent'));

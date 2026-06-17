@@ -3,3 +3,6 @@
 // Example:
 // Input: [1,2,4,5], n=5  → Output: 3
 // Hint: Use the formula: expected sum = n*(n+1)/2, then subtract actual sum.
+function findMissing(arr, n){
+    
+}
