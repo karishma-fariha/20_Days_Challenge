@@ -4,3 +4,11 @@
 // Input: 'The quick brown fox'Output: 'quick'
 // Hint: Split the sentence and use reduce() to track the longest.
 
+function longestWord(sentence){
+    let words = sentence.split(" ");
+ return words.reduce((longest,present) =>{
+    return present.length > longest.length ? present : longest;
+ })
+
+}
+console.log(longestWord('The quick brown fox'));
