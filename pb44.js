@@ -3,11 +3,27 @@
 // Example:
 // Input: '()[]{}'  → Output: trueInput: '([)]'    → Output: false
 // Hint: Use a stack (array). Push opening brackets, pop and compare for closing ones.
-function isValidParentheses(str){
-    const stack =[];
-    for(let char of str){
-        if(char === "(" ){
-            stack.push(")")
+function isValidParentheses(str) {
+    const stack = [];
+
+    for (let char of str) {
+        if (char === '(') {
+            stack.push(')');
+        } else if (char === '[') {
+            stack.push(']');
+        } else if (char === '{') {
+            stack.push('}');
+        } else {
+            
+            if (stack.pop() !== char) {
+                return false;
+            }
         }
     }
+
+    
+    return stack.length === 0;
 }
+
+console.log(isValidParentheses('()[]{}')); 
+console.log(isValidParentheses('([)]'));    
