@@ -49,3 +49,35 @@ function binarySearch(arr, target) {
 console.log(binarySearch([1, 3, 5, 7, 9], 7)); // Output: 3
 console.log(binarySearch([1, 3, 5, 7, 9], 4)); // Output: -1
  
+// Problem 33: Deep Clone an Object  [Medium]
+// Description: Write a function deepClone(obj) that returns a deep copy of a plain object without using JSON.parse/JSON.stringify.
+// Example:
+// const a = {x: {y: 1}};const b = deepClone(a);b.x.y = 99;// a.x.y is still 1
+// Hint: Use recursion and check for object/array types.
+function deepClone(obj) {
+  // Return primitive values and null directly
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  // Create a new array or object
+  const clone = Array.isArray(obj) ? [] : {};
+
+  // Recursively copy each property
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clone[key] = deepClone(obj[key]);
+    }
+  }
+
+  return clone;
+}
+
+// Example
+const a = { x: { y: 1 } };
+const b = deepClone(a);
+
+b.x.y = 99;
+
+console.log(a.x.y); // 1
+console.log(b.x.y); // 99
