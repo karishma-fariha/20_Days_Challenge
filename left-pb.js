@@ -81,3 +81,58 @@ b.x.y = 99;
 
 console.log(a.x.y); // 1
 console.log(b.x.y); // 99
+
+
+// Problem 34: Event Emitter  [Medium]
+// Description: Build a simple EventEmitter class with on(event, listener), emit(event, ...args), and off(event, listener) methods.
+// Example:
+// const emitter = new EventEmitter();emitter.on('greet', name => console.log('Hello ' + name));emitter.emit('greet', 'Sara'); // Hello Sara
+// Hint: Store listeners in an object where keys are event names and values are arrays of functions.
+
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+
+  // Register a listener
+  on(event, listener) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+
+    this.events[event].push(listener);
+  }
+
+  // Trigger all listeners for an event
+  emit(event, ...args) {
+    if (!this.events[event]) return;
+
+    this.events[event].forEach(listener => {
+      listener(...args);
+    });
+  }
+
+  // Remove a specific listener
+  off(event, listener) {
+    if (!this.events[event]) return;
+
+    this.events[event] = this.events[event].filter(
+      fn => fn !== listener
+    );
+  }
+}
+
+// Example Usage
+const emitter = new EventEmitter();
+
+const greetListener = (name) => {
+  console.log("Hello " + name);
+};
+
+emitter.on("greet", greetListener);
+
+emitter.emit("greet", "Sara"); // Hello Sara
+
+emitter.off("greet", greetListener);
+
+emitter.emit("greet", "Sara"); // Nothing happens
