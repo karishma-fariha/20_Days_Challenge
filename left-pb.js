@@ -216,3 +216,47 @@ function myPromiseAll(promises) {
     });
   });
 }
+
+// Problem 39: Flatten Object (Deep)  [Medium]
+// Description: Write a function flattenObject(obj) that takes a deeply nested object and returns a flat object with dot-notation keys.
+// Example:
+// Input: {a: {b: {c: 1}}}Output: {'a.b.c': 1}
+// Hint: Use recursion; build the key by joining parent keys with dots.
+
+function flattenObject(obj) {
+  const result = {};
+
+  function flatten(currentObj, parentKey) {
+    for (let key in currentObj) {
+      if (currentObj.hasOwnProperty(key)) {
+        const newKey = parentKey ? `${parentKey}.${key}` : key;
+
+        // If the value is a non-null object (and not an array), recurse
+        if (
+          typeof currentObj[key] === "object" &&
+          currentObj[key] !== null &&
+          !Array.isArray(currentObj[key])
+        ) {
+          flatten(currentObj[key], newKey);
+        } else {
+          result[newKey] = currentObj[key];
+        }
+      }
+    }
+  }
+
+  flatten(obj, "");
+  return result;
+}
+
+// Example
+const obj = {
+  a: {
+    b: {
+      c: 1
+    }
+  }
+};
+
+console.log(flattenObject(obj));
+// Output: { "a.b.c": 1 }
