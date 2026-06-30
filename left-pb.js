@@ -260,3 +260,33 @@ const obj = {
 
 console.log(flattenObject(obj));
 // Output: { "a.b.c": 1 }
+
+// Problem 40: Group Array by Property  [Medium]
+// Description: Write a function groupBy(arr, key) that groups an array of objects by a given property key.
+// Example:
+// groupBy([{type:'fruit',name:'apple'},{type:'veg',name:'carrot'},{type:'fruit',name:'mango'}], 'type')// {fruit: [...], veg: [...]}
+// Hint: Use reduce() and build an object where each key maps to an array.
+function groupBy(arr, key) {
+  return arr.reduce((result, item) => {
+    const groupKey = item[key];
+
+    // Create the group if it doesn't exist
+    if (!result[groupKey]) {
+      result[groupKey] = [];
+    }
+
+    // Add the current item to the group
+    result[groupKey].push(item);
+
+    return result;
+  }, {});
+}
+
+// Example
+const data = [
+  { type: "fruit", name: "apple" },
+  { type: "veg", name: "carrot" },
+  { type: "fruit", name: "mango" }
+];
+
+console.log(groupBy(data, "type"));
