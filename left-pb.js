@@ -290,3 +290,17 @@ const data = [
 ];
 
 console.log(groupBy(data, "type"));
+
+// Write a function debounce(fn, delay) that returns a new function. The returned function delays calling fn until after delay milliseconds have passed since the last time it was invoked.
+
+function debounce(fn, delay) {
+  let timer;
+
+  return function (...args) {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
